@@ -31,7 +31,7 @@ To Kick the current players that exists in the file "players_to_kick.txt"
 rcon_kick.exe -ip="123.123.123.123" -port="2402" -password="zedar" -file="I:\Rock\players_to_kick.txt"
 
 To kick all the ingame players
-rcon_kick.exe -ip="123.123.123.123" -port="2402" -password="zedar" -kickall
+rcon_kick.exe -ip="123.123.123.123" -port="2402" -password="zedar" -kickall=1
 
 
 
