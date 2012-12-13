@@ -38,9 +38,7 @@ rcon_kick.exe -ip="123.123.123.123" -port="2402" -password="zedar" -kickall
 Credits
 ========
 
-ziellos2k for his library
-
-Torndeco for hold a pretty fast parser for Battleye logs
+Developer: nanomo
 
 Zedar.com.ar the biggest Zombie Community in LATAM
 
