@@ -1,7 +1,7 @@
 RCon Kicker for Arma2/DayZ
 ===========================
 
-This is a kicker utility originally (fast)develped to https://github.com/Torndeco/pyBEscanner
+This is a kicker utility originally (fast)develped for https://github.com/Torndeco/pyBEscanner
 
 
 Prerequisites
