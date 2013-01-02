@@ -1,0 +1,9 @@
+C:\Users\mariano\Desktop\DAYZ\dev\rcon_kick\rcon_kick\rcon_kick\bin\Debug\rcon_kick.exe
+C:\Users\mariano\Desktop\DAYZ\dev\rcon_kick\rcon_kick\rcon_kick\bin\Debug\rcon_kick.pdb
+C:\Users\mariano\Desktop\DAYZ\dev\rcon_kick\rcon_kick\rcon_kick\bin\Debug\BattleNET.dll
+C:\Users\mariano\Desktop\DAYZ\dev\rcon_kick\rcon_kick\rcon_kick\bin\Debug\BattleNET.pdb
+C:\Users\mariano\Desktop\DAYZ\dev\rcon_kick\rcon_kick\rcon_kick\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\mariano\Desktop\DAYZ\dev\rcon_kick\rcon_kick\rcon_kick\obj\x86\Debug\rcon_kick.exe
+C:\Users\mariano\Desktop\DAYZ\dev\rcon_kick\rcon_kick\rcon_kick\obj\x86\Debug\rcon_kick.pdb
+I:\Juegos\github\nanomorepos\rconKick\rcon_kick\obj\x86\Debug\rcon_kick.exe
+I:\Juegos\github\nanomorepos\rconKick\rcon_kick\obj\x86\Debug\rcon_kick.pdb
