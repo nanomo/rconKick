@@ -59,6 +59,29 @@ namespace rcon_kick
 
             if (CommandLine["kickall"] != null)
             {
+                string kam="Restarting, reconnect in 2 minutes!";
+                int kamin = 2;
+
+                if (CommandLine["kickallmsg"] != null)
+                {
+                    kam = CommandLine["kickallmsg"];
+                }
+                else
+                {
+                    Console.WriteLine("kickall message is missing, using the default: "+kam);
+    
+                }
+
+                if (CommandLine["kickallmin"] != null)
+                {
+                    kamin = Convert.ToInt32(CommandLine["kickallmin"]);
+                }
+                else
+                {
+                    Console.WriteLine("Minutes of ban missing, using the default: " + kamin);
+
+                }
+
                 if (!error)
                 {
                     IBattleNET b = new BattlEyeClient(loginCredentials);
@@ -69,8 +92,8 @@ namespace rcon_kick
                     // :)
                     for (int i = 0; i <= 100; i++)
                     {
-                        b.SendCommandPacket(EBattlEyeCommand.Kick, Convert.ToString(i));
-
+                        //b.SendCommandPacket(EBattlEyeCommand.Kick, Convert.ToString(i));
+                        b.SendCommandPacket("ban " + Convert.ToString(i) + " " + kamin + " " + kam);
                     }
                     b.Disconnect();
                     
