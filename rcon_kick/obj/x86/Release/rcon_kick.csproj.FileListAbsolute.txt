@@ -10,3 +10,10 @@ I:\Juegos\github\nanomorepos\rconKick\rcon_kick\bin\Release\rcon_kick.pdb
 I:\Juegos\github\nanomorepos\rconKick\rcon_kick\obj\x86\Release\ResolveAssemblyReference.cache
 I:\Juegos\github\nanomorepos\rconKick\rcon_kick\obj\x86\Release\rcon_kick.exe
 I:\Juegos\github\nanomorepos\rconKick\rcon_kick\obj\x86\Release\rcon_kick.pdb
+C:\Users\JonBons\Documents\GitHub\rconKick\rcon_kick\obj\x86\Release\rcon_kick.exe
+C:\Users\JonBons\Documents\GitHub\rconKick\rcon_kick\obj\x86\Release\rcon_kick.pdb
+C:\Users\JonBons\Documents\GitHub\rconKick\rcon_kick\bin\Release\rcon_kick.exe
+C:\Users\JonBons\Documents\GitHub\rconKick\rcon_kick\bin\Release\rcon_kick.pdb
+C:\Users\JonBons\Documents\GitHub\rconKick\rcon_kick\obj\x86\Release\rcon_kick.csprojResolveAssemblyReference.cache
+C:\Users\JonBons\Documents\GitHub\rconKick\rcon_kick\bin\Release\BattleNET.dll
+C:\Users\JonBons\Documents\GitHub\rconKick\rcon_kick\bin\Release\BattleNET.pdb

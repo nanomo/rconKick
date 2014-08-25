@@ -8,50 +8,41 @@ using BattleNET;
 using System.Collections;
 
 using System.IO;
+using System.Net;
 namespace rcon_kick
 {
     class Program
     {
-         [STAThread]
+        [STAThread]
         static void Main(string[] args)
         {
             string line;
-            bool error=false;
+            bool error = false;
             Console.ResetColor();
             CommandLineArgs CommandLine = new CommandLineArgs(args);
 
-            BattlEyeLoginCredentials loginCredentials = new BattlEyeLoginCredentials();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("====================================");
             Console.WriteLine("ZEDAR.COM.AR // RCon Kicker Started!");
             Console.WriteLine("====================================");
             Console.ForegroundColor = ConsoleColor.Red;
-            
-            if (CommandLine["ip"] != null)
-            {
-                loginCredentials.Host = CommandLine["ip"];
-            }
-            else
+
+            BattlEyeLoginCredentials loginCredentials;
+            loginCredentials = GetLoginCredentials(args);
+
+            if (CommandLine["ip"] == null)
             {
                 Console.WriteLine("IP is missing!");
                 error = true;
             }
 
-            if (CommandLine["port"] != null)
-            {
-                loginCredentials.Port = Convert.ToInt32( CommandLine["port"]);
-            }
-            else
+            if (CommandLine["port"] == null)
             {
                 Console.WriteLine("Port is missing!");
                 error = true;
             }
 
-            if (CommandLine["password"] != null)
-            {
-                loginCredentials.Password =CommandLine["password"];
-            }
-            else
+            if (CommandLine["password"] == null)
             {
                 Console.WriteLine("Password is missing!");
                 error = true;
@@ -59,7 +50,7 @@ namespace rcon_kick
 
             if (CommandLine["kickall"] != null)
             {
-                string kam="Restarting, reconnect in 2 minutes!";
+                string kam = "Restarting, reconnect in 2 minutes!";
                 int kamin = 2;
 
                 if (CommandLine["kickallmsg"] != null)
@@ -68,8 +59,8 @@ namespace rcon_kick
                 }
                 else
                 {
-                    Console.WriteLine("kickall message is missing, using the default: "+kam);
-    
+                    Console.WriteLine("kickall message is missing, using the default: " + kam);
+
                 }
 
                 if (CommandLine["kickallmin"] != null)
@@ -84,19 +75,18 @@ namespace rcon_kick
 
                 if (!error)
                 {
-                    IBattleNET b = new BattlEyeClient(loginCredentials);
-                    b.MessageReceivedEvent += DumpMessage;
-                    b.DisconnectEvent += Disconnected;
-                    b.ReconnectOnPacketLoss(true);
+                    BattlEyeClient b = new BattlEyeClient(loginCredentials);
+                    b.BattlEyeMessageReceived += BattlEyeMessageReceived;
+                    b.ReconnectOnPacketLoss = true;
                     b.Connect();
                     // :)
                     for (int i = 0; i <= 100; i++)
                     {
                         //b.SendCommandPacket(EBattlEyeCommand.Kick, Convert.ToString(i));
-                        b.SendCommandPacket("ban " + Convert.ToString(i) + " " + kamin + " " + kam);
+                        b.SendCommand("ban " + Convert.ToString(i) + " " + kamin + " " + kam);
                     }
                     b.Disconnect();
-                    
+
                 }
 
                 Environment.Exit(0);
@@ -110,18 +100,17 @@ namespace rcon_kick
                 {
                     try
                     {
-                       System.IO.StreamReader file = new System.IO.StreamReader(CommandLine["file"]);
+                        System.IO.StreamReader file = new System.IO.StreamReader(CommandLine["file"]);
 
-                        IBattleNET b = new BattlEyeClient(loginCredentials);
-                        b.MessageReceivedEvent += DumpMessage;
-                        b.DisconnectEvent += Disconnected;
-                        b.ReconnectOnPacketLoss(true);
+                        BattlEyeClient b = new BattlEyeClient(loginCredentials);
+                        b.BattlEyeMessageReceived += BattlEyeMessageReceived;
+                        b.ReconnectOnPacketLoss = true;
                         b.Connect();
 
                         while ((line = file.ReadLine()) != null)
                         {
                             Console.WriteLine(line);
-                            b.SendCommandPacket("#kick "+ line);
+                            b.SendCommand("#kick " + line);
 
                         }
                         b.Disconnect();
@@ -145,19 +134,70 @@ namespace rcon_kick
                 error = true;
                 Console.ResetColor();
             }
-             
+
             // Console.ReadLine();
         }
 
-
-           private static void Disconnected(BattlEyeDisconnectEventArgs args)
+        private static void BattlEyeMessageReceived(BattlEyeMessageEventArgs args)
         {
-          // Console.WriteLine(args.Message);
+            Console.WriteLine(args.Message);
         }
 
-         private static void DumpMessage(BattlEyeMessageEventArgs args)
-         {
-            Console.WriteLine(args.Message);
-         }
+        private static BattlEyeLoginCredentials GetLoginCredentials(string[] args)
+        {
+            BattlEyeLoginCredentials loginCredentials = new BattlEyeLoginCredentials();
+            loginCredentials.Host = null;
+            loginCredentials.Port = 0;
+            loginCredentials.Password = "";
+
+            for (int i = 0; i < args.Length; i = i + 2)
+            {
+                switch (args[i])
+                {
+                    case "-host":
+                        {
+                            try
+                            {
+                                IPAddress ip = Dns.GetHostAddresses(args[i + 1])[0];
+                                loginCredentials.Host = ip;
+                            }
+                            catch
+                            {
+                                Console.WriteLine("No valid host given!");
+                            }
+                            break;
+                        }
+
+                    case "-port":
+                        {
+                            int value;
+                            if (int.TryParse(args[i + 1], out value))
+                            {
+                                loginCredentials.Port = value;
+                            }
+                            else
+                            {
+                                Console.WriteLine("No valid port given!");
+                            }
+                            break;
+                        }
+
+                    case "-password":
+                        {
+                            if (args[i + 1] != "")
+                            {
+                                loginCredentials.Password = args[i + 1];
+                            }
+                            else
+                            {
+                                Console.WriteLine("No password given!");
+                            }
+                            break;
+                        }
+                }
+            }
+
+            return loginCredentials;
+        }
     }
 }

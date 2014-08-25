@@ -40,8 +40,9 @@
     <ApplicationIcon>zedar_launcher.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BattleNET">
-      <HintPath>..\..\..\bttle\ziellos2k-BattleNET-20120706-71-g8416bc7\ziellos2k-BattleNET-8416bc7\src-zedar\ConsoleApplication1\bin\Release\BattleNET.dll</HintPath>
+    <Reference Include="BattleNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BattleNET\BattleNET\bin\Release\BattleNET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
